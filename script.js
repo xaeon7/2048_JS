@@ -1,10 +1,10 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
 
-const board = [ [2, 4, 2, 4],
-                [4, 2, 4, 2],
-                [64, 8, 2, 64],
-                [128, 256, 64, 2048]]
+const board = [ [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]]
 
 const boardSize = 4;
 
@@ -82,6 +82,7 @@ const MergeLeft= (board) => {
       }
     
   }
+  return board;
 }
 
 const Reverse= (board) => {
@@ -94,6 +95,7 @@ const MergeRight = (board) => {
   Reverse(board);
   MergeLeft(board);
   Reverse(board);
+  return board;
 }
 
 const Transpose = (board) => {
@@ -110,12 +112,14 @@ const MergeUp = (board) => {
   Transpose(board);
   MergeLeft(board);
   Transpose(board);
+  return board;
 }
 
 const MergeDown = (board) => {
   Transpose(board);
   MergeRight(board);
   Transpose(board);
+  return board;
 }
 
 const GetMove = () => {
@@ -155,40 +159,35 @@ const Won = () => {
 }
 
 const NoMoves = () => {
-  const temp1 = [...board];
-  const temp2 = [...board];
-
+  const temp1 = JSON.parse(JSON.stringify(board));;
   MergeLeft(temp1);
-  if(temp1 == temp2){
-    MergeRight(temp1);
-    if(temp1 == temp2){
-      MergeUp(temp1);
-      if(temp1 == temp2){
-        MergeDown(temp1);
-        if(temp1 == temp2){
-          return true;
-          }
-        }
+  MergeRight(temp1);
+  MergeUp(temp1);
+  MergeDown(temp1);
+  for(i=0; i<boardSize; i++){
+    for(j=0; j<boardSize; j++){
+      if(temp1[i][j] != board[i][j]){
+        return false;
       }
     }
-  return false;
+  }
+  return true;
 }
 
 InitBoard();
-while(!(gameOver)){
+
+while(!(NoMoves())){
   UpdateBoard(board);
   GetMove();
   AddNewValue();
-  Won();
   if(Won()){
-    alert('You won!');
+    console.log('You won!');
     gameOver = true;
   }
   if(NoMoves()){
-    alert('You lost!');
+    console.log('You lost!');
     gameOver = true;
   }
-  gameOver = true;
 }
 
 
