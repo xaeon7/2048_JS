@@ -1,0 +1,105 @@
+*{
+  margin : 0;
+  padding: 0;
+}
+
+body{
+  height:100vh;
+  font-family: 'Nunito', sans-serif;
+  background : #1D3461;
+  color: white;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-direction : column;
+}
+
+h1{
+  font-size : 4rem;
+}
+
+#container{
+  margin: 50px;
+  width: 400px;
+  height : 400px;
+}
+
+ul{
+  list-style : none;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-wrap : wrap;
+}
+
+li{
+  margin: 5px;
+  width: 90px;
+  height: 90px;
+  background : rgb(18, 34, 66);
+  border-radius: 10px;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  font-weight :bold;
+}
+
+._0_{
+  background: rgb(18, 34, 66);
+  font-size : 2.5rem;
+}
+
+._2_{
+  background: #3BEBA3;
+  font-size : 2.5rem;
+}
+
+._4_{
+  background: #49D4FF;
+  font-size : 2.5rem;
+}
+
+._8_{
+  background: #FF973D;
+  font-size : 2.5rem;
+}
+
+._16_{
+  background: #FE5955;
+  font-size : 2.5rem;
+}
+
+._32_{
+  background: #C559E9;
+  font-size : 2.5rem;
+}
+
+._64_{
+  background: #B10F5B;
+  font-size : 2.5rem;
+}
+
+._128_{
+  background: rgb(255, 178, 35);
+  font-size : 2.5rem;
+}
+
+._256_{
+  background: #ABE545;
+  font-size : 2.5rem;
+}
+
+._512_{
+  background: rgb(255, 74, 164);
+  font-size : 2.5rem;
+}
+
+._1024_{
+  background: rgb(0, 206, 51);
+  font-size : 2rem;
+}
+
+._2048_{
+  background : rgb(236, 23, 105);
+  font-size : 2rem;
+}
