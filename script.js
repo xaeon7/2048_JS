@@ -176,19 +176,23 @@ const NoMoves = () => {
 
 InitBoard();
 
-while(!(NoMoves())){
-  UpdateBoard(board);
-  GetMove();
-  AddNewValue();
-  if(Won()){
-    console.log('You won!');
-    gameOver = true;
-  }
-  if(NoMoves()){
-    console.log('You lost!');
-    gameOver = true;
-  }
-}
+
+// Still fixing looping issue
+
+
+// while(!(NoMoves())){
+//   UpdateBoard(board);
+//   GetMove();
+//   AddNewValue();
+//   if(Won()){
+//     console.log('You won!');
+//     gameOver = true;
+//   }
+//   if(NoMoves()){
+//     console.log('You lost!');
+//     gameOver = true;
+//   }
+// }
 
 
 
