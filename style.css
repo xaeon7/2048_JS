@@ -42,6 +42,8 @@ li{
   align-items : center;
   justify-content : center;
   font-weight :bold;
+  transition: cubic-bezier(.59,.16,.52,.78) 0.1s;
+
 }
 
 ._0_{
