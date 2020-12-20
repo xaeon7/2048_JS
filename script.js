@@ -7,6 +7,17 @@ let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0]];
 const boardSize = 4;
 score_num = 0;
+
+let pageWidth = window.innerWidth || document.body.clientWidth;
+let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+
+const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
+const gestureZone = document.getElementById('modalContent');
+
 // Functions
 const NewValue = () => {
   const value = Math.floor(Math.random() * 8 + 1) === 1? 4 : 2;
@@ -136,39 +147,40 @@ const MergeDown = (board) => {
   return board;
 }
 
-const HandleGesture = () => {
-    if (touchendX < touchstartX) {
-        return 'left';
-    }
-    
-    if (touchendX > touchstartX) {
-        return 'right';
-    }
-    
-    if (touchendY < touchstartY) {
-        return 'up';
-    }
-    
-    if (touchendY > touchstartY) {
-        return 'down';
-    }
+const HandleGesture = (e) => {
+    let x = touchendX - touchstartX;
+    let y = touchendY - touchstartY;
+    let xy = Math.abs(x / y);
+    let yx = Math.abs(y / x);
+    if (Math.abs(x) > treshold || Math.abs(y) > treshold) {
+        if (yx <= limit) {
+            if (x < 0) {
+                return 'left';
+            } else {
+                return 'right';
+            }
+        }
+        if (xy <= limit) {
+            if (y < 0) {
+                return 'up';
+            } else {
+                return 'down';
+            }
+        }
+    } 
 }
 
 const GetMove = () => {
   // for mobile devices
-  let touchstartX = 0;
-  let touchstartY = 0;
-  let touchendX = 0;
-  let touchendY = 0;
   this.addEventListener('touchstart', function(event) {
     touchstartX = event.changedTouches[0].screenX;
     touchstartY = event.changedTouches[0].screenY;
-  }, false);
+}, false);
 
   this.addEventListener('touchend', function(event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
-    switch(HandleGesture()) {
+    switch(HandleGesture(event)) {
       case 'left':
         const temp1 = JSON.parse(JSON.stringify(board));
         IsOver();
