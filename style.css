@@ -1,5 +1,5 @@
 *{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Comfortaa', cursive;
   margin : 0;
   padding: 0;
 }
@@ -91,8 +91,8 @@ h1{
   font-size : 3rem;
   background : rgb(236, 23, 105);
   border-radius : 10px;
-  width : 140px;
-  height : 140px;
+  width : 150px;
+  height : 150px;
   display : flex;
   align-items : center;
   justify-content : center;
