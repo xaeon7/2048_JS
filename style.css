@@ -20,8 +20,6 @@ h1{
 
 #container{
   margin: 50px;
-  min-width: 380px;
-  min-height: 380px;
   width: 400px;
   height : 400px;
 }
@@ -36,8 +34,6 @@ ul{
 
 li{
   margin: 5px;
-  min-width: 80px;
-  min-height: 80px;
   width: 90px;
   height: 90px;
   background : rgb(18, 34, 66);
