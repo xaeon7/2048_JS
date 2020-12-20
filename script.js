@@ -302,7 +302,7 @@ const Won = () => {
   for(let row=0; row< boardSize; row++){
     for(let col=0; col< boardSize; col++){
       if(board[row][col] === 2048){
-        console.log('You won!');
+        alert('You won!');
         return true;
       }
     }
@@ -324,13 +324,14 @@ const NoMoves = () => {
         }
       }
     }
-    console.log('You lost!');
+    alert('You lost!');
     return true;
   } 
   return false;
 }
 
 const IsOver = () =>{
+  UpdateBoard(board);
   Won();
   NoMoves();
 }
