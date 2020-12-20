@@ -174,25 +174,32 @@ const NoMoves = () => {
   return true;
 }
 
-InitBoard();
+
+const PlayMove = () => {
+  UpdateBoard(board);
+  GetMove();
+  AddNewValue();
+  if(Won()){
+    console.log('You won!');
+    gameOver = true;
+  } else if(NoMoves()){
+    console.log('You lost!');
+    gameOver = true;
+  } else{
+    PlayMove();
+  }
+}
 
 
-// Still fixing looping issue
+const PlayGame = () => {
+  InitBoard();
+  UpdateBoard(board);
+  PlayMove();
+}
 
-
-// while(!(NoMoves())){
-//   UpdateBoard(board);
-//   GetMove();
-//   AddNewValue();
-//   if(Won()){
-//     console.log('You won!');
-//     gameOver = true;
-//   }
-//   if(NoMoves()){
-//     console.log('You lost!');
-//     gameOver = true;
-//   }
-// }
+  
+PlayGame();
+  
 
 
 
