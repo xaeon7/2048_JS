@@ -136,7 +136,89 @@ const MergeDown = (board) => {
   return board;
 }
 
+const HandleGesture = () => {
+    if (touchendX < touchstartX) {
+        return 'left';
+    }
+    
+    if (touchendX > touchstartX) {
+        return 'right';
+    }
+    
+    if (touchendY < touchstartY) {
+        return 'up';
+    }
+    
+    if (touchendY > touchstartY) {
+        return 'down';
+    }
+}
+
 const GetMove = () => {
+  // for mobile devices
+  let touchstartX = 0;
+  let touchstartY = 0;
+  let touchendX = 0;
+  let touchendY = 0;
+  this.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+  }, false);
+
+  this.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    switch(HandleGesture()) {
+      case 'left':
+        const temp1 = JSON.parse(JSON.stringify(board));
+        IsOver();
+        MergeLeft(board);
+        if(UselessMove(temp1, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
+      case 'up':
+        const temp2 = JSON.parse(JSON.stringify(board));
+        IsOver();
+        MergeUp(board);
+        if(UselessMove(temp2, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
+      case 'right':
+        const temp3 = JSON.parse(JSON.stringify(board));
+        IsOver();
+        MergeRight(board);
+        if(UselessMove(temp3, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
+      case 'down':
+        const temp4 = JSON.parse(JSON.stringify(board));
+        IsOver();
+        MergeDown(board);
+        if(UselessMove(temp4, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
+      default:
+        break;  
+    }
+  }, false); 
+
+  // for computers
   this.addEventListener("keydown", (event) => {
     switch(event.which) {
       case 37:
