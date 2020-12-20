@@ -1,6 +1,7 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
 const score = document.querySelector("#score");
+const sfx = document.querySelector("#sfx");
 const container = document.querySelector("#container")
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
@@ -56,6 +57,8 @@ const InitBoard = () => {
 }
 
 const UpdateBoard = (board) =>{
+  sfx.pause(); 
+  sfx.play();
   score.innerHTML = score_num;
   for(let _ = 0; _< boardSize ; _++){
     board[_].map((number, index) => {
