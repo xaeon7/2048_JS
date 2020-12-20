@@ -1,6 +1,7 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
 const score = document.querySelector("#score");
+const container = document.querySelector("#container")
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
@@ -172,12 +173,12 @@ const HandleGesture = (e) => {
 
 const GetMove = () => {
   // for mobile devices
-  this.addEventListener('touchstart', function(event) {
+  container.addEventListener('touchstart', function(event) {
     touchstartX = event.changedTouches[0].screenX;
     touchstartY = event.changedTouches[0].screenY;
 }, false);
 
-  this.addEventListener('touchend', function(event) {
+  container.addEventListener('touchend', function(event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
     switch(HandleGesture(event)) {
