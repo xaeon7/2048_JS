@@ -1,13 +1,13 @@
-var touchstartX = 0;
-var touchstartY = 0;
-var touchendX = 0;
-var touchendY = 0;
+const touchstartX = 0;
+const touchstartY = 0;
+const touchendX = 0;
+const touchendY = 0;
 
 
 
 this.addEventListener('touchstart', function(event) {
-    touchstartX = event.screenX;
-    touchstartY = event.screenY;
+    touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY;
 }, false);
 
 this.addEventListener('touchend', function(event) {
@@ -17,7 +17,7 @@ this.addEventListener('touchend', function(event) {
 }, false); 
 
 function handleGesure() {
-    var swiped = 'swiped: ';
+    const swiped = 'swiped: ';
     if (touchendX < touchstartX) {
         alert(swiped + 'left!');
     }
@@ -28,6 +28,6 @@ function handleGesure() {
         alert(swiped + 'down!');
     }
     if (touchendY > touchstartY) {
-        alert(swiped + 'left!');
+        alert(swiped + 'up!');
     }
 }
