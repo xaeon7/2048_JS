@@ -1,33 +1,38 @@
-const touchstartX = 0;
-const touchstartY = 0;
-const touchendX = 0;
-const touchendY = 0;
-
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
 
 
 this.addEventListener('touchstart', function(event) {
-    touchstartX = e.changedTouches[0].screenX;
-    touchstartY = e.changedTouches[0].screenY;
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
 }, false);
 
 this.addEventListener('touchend', function(event) {
-    touchendX = event.screenX;
-    touchendY = event.screenY;
-    handleGesure();
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
 }, false); 
 
-function handleGesure() {
-    const swiped = 'swiped: ';
-    if (touchendX < touchstartX) {
-        alert(swiped + 'left!');
+function handleGesture() {
+    if (touchendX <= touchstartX) {
+        console.log('Swiped left');
     }
-    if (touchendX > touchstartX) {
-        alert(swiped + 'right!');
+    
+    if (touchendX >= touchstartX) {
+        console.log('Swiped right');
     }
-    if (touchendY < touchstartY) {
-        alert(swiped + 'down!');
+    
+    if (touchendY <= touchstartY) {
+        console.log('Swiped up');
     }
-    if (touchendY > touchstartY) {
-        alert(swiped + 'up!');
+    
+    if (touchendY >= touchstartY) {
+        console.log('Swiped down');
+    }
+    
+    if (touchendY === touchstartY) {
+        console.log('Tap');
     }
 }
