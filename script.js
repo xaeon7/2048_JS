@@ -1,15 +1,10 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
-
-const board = [ [0, 0, 0, 0],
+let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
-                [0, 0, 0, 0]]
-
+                [0, 0, 0, 0]];
 const boardSize = 4;
-
-let gameOver = false;
-
 
 // Functions
 const NewValue = () => {
@@ -17,31 +12,49 @@ const NewValue = () => {
   return value;
 }
 
-const AddNewValue = () => {
-  const row = Math.floor(Math.random() * boardSize);
-  const col = Math.floor(Math.random() * boardSize);
-
-  while(!(board[row][col] === 0)){
-    const row = Math.floor(Math.random() * boardSize);
-    const col = Math.floor(Math.random() * boardSize);
+const IsEmpty = () => {
+  for(let i=0; i < boardSize; i++){
+    for(let j=i; j< boardSize; j++){
+      if(board[i][j] === 0){
+        return true;
+      }
+    }
   }
-  board[row][col] = NewValue();
-  UpdateBoard(board);
+  return false;
+}
+
+const AddNewValue = () => {
+  if(IsEmpty()){
+    let row = Math.floor(Math.random() * boardSize);
+    let col = Math.floor(Math.random() * boardSize);
+
+    while(!(board[row][col] === 0)){
+      row = Math.floor(Math.random() * boardSize);
+      col = Math.floor(Math.random() * boardSize);
+    }
+    board[row][col] = NewValue();
+}
 }
 
 const InitBoard = () => {
-  i = 2;
-  while(i>0){
-    AddNewValue();
-    i--;
-  }
+  AddNewValue();
+  AddNewValue();
+  UpdateBoard(board);
 }
 
 const UpdateBoard = (board) =>{
-  for(_ = 0; _< boardSize ; _++){
+  
+  for(let _ = 0; _< boardSize ; _++){
+    board[_].map((number, index) => {
+      Reset(_, index);
+
+    })
+  }
+
+  for(let _ = 0; _< boardSize ; _++){
     board[_].map((number, index) => {
       cards[4 * _+ index].classList.add(`_${number}_`)
-      if(number == 0){
+      if(number === 0){
         Reset(_, index);
         cards[4 * _+ index].innerText = "";
       }else{
@@ -57,25 +70,24 @@ const Reset = (i, j) => {
 }
 
 const MergeLeft= (board) => {
-  for(i = 0; i< boardSize ; i++){
-    for(_ = 0; _< boardSize ; _++){
-      for(j = boardSize - 1; j> 0 ; j--){
-        if(board[i][j-1] == 0){
+  for(let i = 0; i< boardSize ; i++){
+    for(let _ = 0; _< boardSize ; _++){
+      for(let j = boardSize - 1; j> 0 ; j--){
+        if(board[i][j-1] === 0){
           board[i][j-1] = board[i][j];
           board[i][j] = 0;
         }
-      }
-    }
+      }}
     
-    for(j = boardSize - 1; j> 0 ; j--){
-      if(board[i][j] == board[i][j-1]){
-        board[i][j-1] *= 2;
-        board[i][j] =0;
+    for(let j = 0; j< boardSize -1 ; j++){
+      if(board[i][j] === board[i][j+1]){
+        board[i][j] *= 2;
+        board[i][j+1] =0;
       }
     }
 
-    for(j = boardSize - 1; j> 0 ; j--){
-        if(board[i][j-1] == 0){
+    for(let j = boardSize - 1; j> 0 ; j--){
+        if(board[i][j-1] === 0){
           board[i][j-1] = board[i][j];
           board[i][j] = 0;
         }
@@ -86,7 +98,7 @@ const MergeLeft= (board) => {
 }
 
 const Reverse= (board) => {
-  for(row = 0; row < boardSize; row++){
+  for(let row = 0; row < boardSize; row++){
     board[row].reverse()
   }
 }
@@ -99,8 +111,8 @@ const MergeRight = (board) => {
 }
 
 const Transpose = (board) => {
-  for(i=0; i < boardSize; i++){
-    for(j=i; j< boardSize; j++){
+  for(let i=0; i < boardSize; i++){
+    for(let j=i; j< boardSize; j++){
       const temp = board[i][j];
       board[i][j] = board[j][i];
       board[j][i] = temp;
@@ -126,31 +138,71 @@ const GetMove = () => {
   this.addEventListener("keydown", (event) => {
     switch(event.which) {
       case 37:
+        const temp1 = JSON.parse(JSON.stringify(board));
+        IsOver();
         MergeLeft(board);
-        UpdateBoard(board);
-        break;
+        if(UselessMove(temp1, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
       case 38:
+        const temp2 = JSON.parse(JSON.stringify(board));
+        IsOver();
         MergeUp(board);
-        UpdateBoard(board);
-        break;
+        if(UselessMove(temp2, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
       case 39:
+        const temp3 = JSON.parse(JSON.stringify(board));
+        IsOver();
         MergeRight(board);
-        UpdateBoard(board);
-        break;
+        if(UselessMove(temp3, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
       case 40:
+        const temp4 = JSON.parse(JSON.stringify(board));
+        IsOver();
         MergeDown(board);
-        UpdateBoard(board);
-        break;
+        if(UselessMove(temp4, board)){
+          break;
+        } else {
+          AddNewValue();
+          UpdateBoard(board);
+          return board;
+        }
       default:
-        break;    
+        break;  
     }
   });
 }
 
+const UselessMove = (temp, board) =>{
+  for(let i=0; i<boardSize; i++){
+    for(let j=0; j<boardSize; j++){
+      if(temp[i][j] != board[i][j]){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 const Won = () => {
-  for(row=0; row< boardSize; row++){
-    for(col=0; col< boardSize; col++){
-      if(board[row][col] == 2048){
+  for(let row=0; row< boardSize; row++){
+    for(let col=0; col< boardSize; col++){
+      if(board[row][col] === 2048){
+        console.log('You won!');
         return true;
       }
     }
@@ -159,49 +211,45 @@ const Won = () => {
 }
 
 const NoMoves = () => {
-  const temp1 = JSON.parse(JSON.stringify(board));;
-  MergeLeft(temp1);
-  MergeRight(temp1);
-  MergeUp(temp1);
-  MergeDown(temp1);
-  for(i=0; i<boardSize; i++){
-    for(j=0; j<boardSize; j++){
-      if(temp1[i][j] != board[i][j]){
-        return false;
+  if(!(IsEmpty())){
+    const temp = JSON.parse(JSON.stringify(board));
+    MergeLeft(temp);
+    MergeRight(temp);
+    MergeUp(temp);
+    MergeDown(temp);
+    for(let i=0; i<boardSize; i++){
+      for(let j=0; j<boardSize; j++){
+        if(temp[i][j] != board[i][j]){
+          return false;
+        }
       }
     }
-  }
-  return true;
-}
-
-
-const PlayMove = () => {
-  UpdateBoard(board);
-  GetMove();
-  AddNewValue();
-  if(Won()){
-    console.log('You won!');
-    gameOver = true;
-  } else if(NoMoves()){
     console.log('You lost!');
-    gameOver = true;
-  } else{
-    PlayMove();
-  }
+    return true;
+  } 
+  return false;
 }
 
+const IsOver = () =>{
+  Won();
+  NoMoves();
+}
+
+const Restart = () => {
+  board = [ [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]];
+  InitBoard();
+  UpdateBoard(board);
+}
 
 const PlayGame = () => {
   InitBoard();
   UpdateBoard(board);
-  PlayMove();
+  GetMove();
 }
 
   
 PlayGame();
-  
 
-
-
-
-  
