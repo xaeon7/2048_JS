@@ -30,7 +30,4 @@ function handleGesure() {
     if (touchendY > touchstartY) {
         alert(swiped + 'left!');
     }
-    if (touchendY == touchstartY) {
-        alert('tap!');
-    }
 }
