@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>2048</h1>
+    <div class="header">
+      <h1>2048</h1>
+      <div class="options">
+        <div class="score">
+          <h2>Score</h2>
+          <h2 id="score">0</h2>
+        </div>
+        <button class="restart" onclick="Restart()">Restart</button>
+      </div>
+    </div>
     <div id="container">
       <ul>
         <li id="0"></li>
@@ -30,6 +39,7 @@
         <li id="15"></li>
       </ul>
     </div>
+    <footer>Aalae Bl 2020</footer>
     <script src="script.js"></script>
   </body>
 </html>

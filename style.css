@@ -1,25 +1,111 @@
 *{
+  font-family: 'Nunito', sans-serif;
   margin : 0;
   padding: 0;
 }
 
 body{
-  height:100vh;
-  font-family: 'Nunito', sans-serif;
-  background : #1D3461;
+  height: 100vh;
+  background : #10151b;
   color: white;
   display : flex;
   align-items : center;
   justify-content : center;
   flex-direction : column;
+  user-select: none;
+}
+
+.options{
+  margin : 0 10px;
+  height : 150px;
+  display : flex;
+  align-items : center;
+  justify-content : space-between;
+  flex-direction : column;
+}
+
+
+.header{
+  width : 390px;
+  display : flex;
+  align-items : center;
+  justify-content : space-between;
+  flex-wrap : wrap;
+  padding : 5px;
+}
+
+.score{
+  width : 150px;
+  height : 70px;
+  background : #49D4FF;
+  box-shadow: 1px 1px 0px rgb(43, 131, 158),
+                2px 2px 0px rgb(43, 131, 158),
+                3px 3px 0px rgb(43, 131, 158),
+                4px 4px 0px rgb(43, 131, 158),
+                5px 5px 0px rgb(43, 131, 158),
+                6px 6px 0px rgb(43, 131, 158);
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-direction : column;
+  border-radius: 10px;
+  flex-wrap : wrap;
+}
+
+.restart{
+  font-weight :bold;
+  font-size : 1.5rem;
+  color: #e7e7de;
+  height : 70px;
+  width : 150px;
+  background : #FF973D;
+  box-shadow: 1px 1px 0px rgb(175, 102, 38),
+                2px 2px 0px rgb(175, 102, 38),
+                3px 3px 0px rgb(175, 102, 38),
+                4px 4px 0px rgb(175, 102, 38),
+                5px 5px 0px rgb(175, 102, 38),
+                6px 6px 0px rgb(175, 102, 38);
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-direction : column;
+  border-radius: 10px;
+  flex-wrap : wrap;
+  outline : none;
+  border : none;
+  cursor : pointer;
+}
+
+.restart:hover{
+  background: rgb(0, 206, 51);
+  transition: linear 0.4s;
+  box-shadow: 1px 1px 0px rgb(11, 119, 38),
+                2px 2px 0px rgb(11, 119, 38),
+                3px 3px 0px rgb(11, 119, 38),
+                4px 4px 0px rgb(11, 119, 38),
+                5px 5px 0px rgb(11, 119, 38),
+                6px 6px 0px rgb(11, 119, 38);
 }
 
 h1{
-  font-size : 4rem;
+  font-size : 3rem;
+  background : rgb(236, 23, 105);
+  border-radius : 10px;
+  width : 140px;
+  height : 140px;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  box-shadow: 1px 1px 0px rgb(153, 18, 70),
+                2px 2px 0px rgb(153, 18, 70),
+                3px 3px 0px rgb(153, 18, 70),
+                4px 4px 0px rgb(153, 18, 70),
+                5px 5px 0px rgb(153, 18, 70),
+                6px 6px 0px rgb(153, 18, 70);
 }
 
 #container{
-  margin: 50px;
+  margin: 20px;
   width: 400px;
   height : 400px;
 }
@@ -36,13 +122,13 @@ li{
   margin: 5px;
   width: 90px;
   height: 90px;
-  background : rgb(18, 34, 66);
+  background :  #1b232c;
   border-radius: 10px;
   display : flex;
   align-items : center;
   justify-content : center;
   font-weight :bold;
-  transition: cubic-bezier(.59,.16,.52,.78) 0.1s;
+  transition: ease-out 0.25s;
 
 }
 
@@ -54,54 +140,125 @@ li{
 ._2_{
   background: #3BEBA3;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(39, 160, 110),
+                2px 2px 0px rgb(39, 160, 110),
+                3px 3px 0px rgb(39, 160, 110),
+                4px 4px 0px rgb(39, 160, 110),
+                5px 5px 0px rgb(39, 160, 110),
+                6px 6px 0px rgb(39, 160, 110);
 }
 
 ._4_{
   background: #49D4FF;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(43, 131, 158),
+                2px 2px 0px rgb(43, 131, 158),
+                3px 3px 0px rgb(43, 131, 158),
+                4px 4px 0px rgb(43, 131, 158),
+                5px 5px 0px rgb(43, 131, 158),
+                6px 6px 0px rgb(43, 131, 158);
 }
 
 ._8_{
   background: #FF973D;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(175, 102, 38),
+                2px 2px 0px rgb(175, 102, 38),
+                3px 3px 0px rgb(175, 102, 38),
+                4px 4px 0px rgb(175, 102, 38),
+                5px 5px 0px rgb(175, 102, 38),
+                6px 6px 0px rgb(175, 102, 38);
 }
 
 ._16_{
   background: #FE5955;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(172, 49, 47),
+                2px 2px 0px rgb(172, 49, 47),
+                3px 3px 0px rgb(172, 49, 47),
+                4px 4px 0px rgb(172, 49, 47),
+                5px 5px 0px rgb(172, 49, 47),
+                6px 6px 0px rgb(172, 49, 47);
 }
 
 ._32_{
   background: #C559E9;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(117, 35, 145),
+                2px 2px 0px rgb(117, 35, 145),
+                3px 3px 0px rgb(117, 35, 145),
+                4px 4px 0px rgb(117, 35, 145),
+                5px 5px 0px rgb(117, 35, 145),
+                6px 6px 0px rgb(117, 35, 145);
 }
 
 ._64_{
   background: #B10F5B;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(119, 13, 63),
+                2px 2px 0px rgb(119, 13, 63),
+                3px 3px 0px rgb(119, 13, 63),
+                4px 4px 0px rgb(119, 13, 63),
+                5px 5px 0px rgb(119, 13, 63),
+                6px 6px 0px rgb(119, 13, 63);
 }
 
 ._128_{
   background: rgb(255, 178, 35);
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(156, 111, 26),
+                2px 2px 0px rgb(156, 111, 26),
+                3px 3px 0px rgb(156, 111, 26),
+                4px 4px 0px rgb(156, 111, 26),
+                5px 5px 0px rgb(156, 111, 26),
+                6px 6px 0px rgb(156, 111, 26);
 }
 
 ._256_{
   background: #ABE545;
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(94, 136, 21),
+                2px 2px 0px rgb(94, 136, 21),
+                3px 3px 0px rgb(94, 136, 21),
+                4px 4px 0px rgb(94, 136, 21),
+                5px 5px 0px rgb(94, 136, 21),
+                6px 6px 0px rgb(94, 136, 21);
 }
 
 ._512_{
   background: rgb(255, 74, 164);
   font-size : 2.5rem;
+  box-shadow: 1px 1px 0px rgb(172, 28, 100),
+                2px 2px 0px rgb(172, 28, 100),
+                3px 3px 0px rgb(172, 28, 100),
+                4px 4px 0px rgb(172, 28, 100),
+                5px 5px 0px rgb(172, 28, 100),
+                6px 6px 0px rgb(172, 28, 100);
 }
 
 ._1024_{
   background: rgb(0, 206, 51);
   font-size : 2rem;
+  box-shadow: 1px 1px 0px rgb(11, 119, 38),
+                2px 2px 0px rgb(11, 119, 38),
+                3px 3px 0px rgb(11, 119, 38),
+                4px 4px 0px rgb(11, 119, 38),
+                5px 5px 0px rgb(11, 119, 38),
+                6px 6px 0px rgb(11, 119, 38);
 }
 
 ._2048_{
   background : rgb(236, 23, 105);
   font-size : 2rem;
+  box-shadow: 1px 1px 0px rgb(153, 18, 70),
+                2px 2px 0px rgb(153, 18, 70),
+                3px 3px 0px rgb(153, 18, 70),
+                4px 4px 0px rgb(153, 18, 70),
+                5px 5px 0px rgb(153, 18, 70),
+                6px 6px 0px rgb(153, 18, 70);
+}
+
+footer{
+  font-size : 0.8rem;
+  color : rgba(255, 255, 255, 0.425);
 }

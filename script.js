@@ -1,11 +1,12 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
+const score = document.querySelector("#score");
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]];
 const boardSize = 4;
-
+score_num = 0;
 // Functions
 const NewValue = () => {
   const value = Math.floor(Math.random() * 8 + 1) === 1? 4 : 2;
@@ -43,7 +44,7 @@ const InitBoard = () => {
 }
 
 const UpdateBoard = (board) =>{
-  
+  score.innerHTML = score_num;
   for(let _ = 0; _< boardSize ; _++){
     board[_].map((number, index) => {
       Reset(_, index);
@@ -82,6 +83,7 @@ const MergeLeft= (board) => {
     for(let j = 0; j< boardSize -1 ; j++){
       if(board[i][j] === board[i][j+1]){
         board[i][j] *= 2;
+        score_num += board[i][j] + (board[i][j] % 9);
         board[i][j+1] =0;
       }
     }
