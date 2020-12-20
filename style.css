@@ -4,9 +4,7 @@
   padding: 0;
 }
 
-html, body {
-    overscroll-behavior-x: none;
-}
+
 
 body{
   height: 100vh;
@@ -118,7 +116,7 @@ ul{
   list-style : none;
   display : flex;
   align-items : center;
-  justify-content : center;
+  justify-content : space-around;
   flex-wrap : wrap;
 }
 
@@ -265,4 +263,20 @@ li{
 footer{
   font-size : 0.8rem;
   color : rgba(255, 255, 255, 0.425);
+}
+
+/* mobile view */
+@media screen and (max-width: 400px) {
+  .header{
+    width : 90%;
+  }
+  #container{
+    margin-top: 20px;
+    width: 92%;
+  }
+  li{
+    margin: 1.2%;
+    width: 22%;
+  }
+
 }
