@@ -4,11 +4,9 @@
   padding: 0;
 }
 
-
-
 body{
-  height: 100vh;
   background : #10151b;
+  height : 100vh;
   color: white;
   display : flex;
   align-items : center;
@@ -435,4 +433,22 @@ footer{
     right: 50%;
 }
 
+}
+
+@media screen and (max-width: 400px) {
+  body{
+    width : 100%;
+  }
+  .restart{
+    font-size: 1rem;
+  }
+  .score{
+    font-size: 0.8rem;
+  }
+
+}
+@media screen and (max-height: 700px){
+  body{
+    height: 100%
+  }
 }
