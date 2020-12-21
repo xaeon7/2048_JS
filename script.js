@@ -5,7 +5,6 @@ const status = document.querySelector(".info");
 const high_score = document.querySelector("#highscore");
 const sfx = document.querySelector("#sfx");
 const container = document.querySelector("#container");
-const popup = document.querySelector("#myPopup");
 
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
@@ -40,6 +39,7 @@ const gestureZone = document.getElementById('modalContent');
 // Functions
 
 const PopUpText = () => {
+  const popup = document.querySelector("#myPopup");
   popup.classList.toggle("show");
 }
 const NewValue = () => {
@@ -385,8 +385,8 @@ const Restart = () => {
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]];
   score_num = 0;
-  status.className = 'info';
-  status.innerHTML = '2048';
+  status.className = 'info popup';
+  status.innerHTML = `<i class="fa fa-info-circle"></i>2048<span class="popuptext" id="myPopup">2048 is a single-player sliding block puzzle game designed by Italian web developer Gabriele Cirulli. The objective of the game is to slide numbered tiles on a grid to combine them to create a tile with the number 2048; however, one can continue to play the game after reaching the goal, creating tiles with larger numbers.</span>`;
   InitBoard();
   UpdateBoard(board);
 }
