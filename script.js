@@ -344,7 +344,7 @@ const Won = () => {
     for(let col=0; col< boardSize; col++){
       if(board[row][col] === 2048){
         status.innerHTML = 'YOU WIN';
-        status.className = 'win';
+        status.className = 'info win';
         return true;
       }
     }
@@ -367,7 +367,7 @@ const NoMoves = () => {
       }
     }
     status.innerHTML = 'GAME OVER';
-    status.className = 'lost';
+    status.className = 'info lost';
     return true;
   } 
   return false;
