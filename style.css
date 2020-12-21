@@ -148,6 +148,7 @@ body{
   overflow-wrap: break-word;
   word-wrap: break-word;
   transition : ease-out 0.25s;
+  outline:none;
 }
 
 .info:hover{
@@ -432,7 +433,6 @@ footer{
     top :275%;
     left : -7.5%;
 }
-
 }
 
 @media screen and (max-width: 400px) {
