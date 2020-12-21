@@ -76,7 +76,8 @@ body{
 }
 
 .restart{
-  padding : 0 10px;
+  padding : 0 5px;
+  font-size : 1.3rem;
   font-weight :bold;
   color: #e7e7de;
   height : 60px;
@@ -99,7 +100,7 @@ body{
   cursor : pointer;
 }
 
-.restart:hover{
+.restart:hover {
   background: rgb(0, 206, 51);
   transition: linear 0.4s;
   box-shadow: 1px 1px 0px rgb(11, 119, 38),
@@ -120,7 +121,17 @@ body{
                 6px 6px 0px rgb(94, 136, 21);
 }
 
-h1{
+.undo:hover{
+  background : #FF973D;
+  box-shadow: 1px 1px 0px rgb(175, 102, 38),
+                2px 2px 0px rgb(175, 102, 38),
+                3px 3px 0px rgb(175, 102, 38),
+                4px 4px 0px rgb(175, 102, 38),
+                5px 5px 0px rgb(175, 102, 38),
+                6px 6px 0px rgb(175, 102, 38);
+}
+
+.info{
   font-size : 3rem;
   text-align : center;
   background : rgb(236, 23, 105);
@@ -139,6 +150,17 @@ h1{
   overflow-wrap: break-word;
   word-wrap: break-word;
   transition : ease-out 0.25s;
+}
+
+.info:hover{
+  background: #3BEBA3;
+  box-shadow: 1px 1px 0px rgb(39, 160, 110),
+                2px 2px 0px rgb(39, 160, 110),
+                3px 3px 0px rgb(39, 160, 110),
+                4px 4px 0px rgb(39, 160, 110),
+                5px 5px 0px rgb(39, 160, 110),
+                6px 6px 0px rgb(39, 160, 110);
+  transition : linear 0.4s;
 }
 
 .win{
@@ -266,7 +288,7 @@ li{
 
 ._128_{
   background: rgb(255, 178, 35);
-  font-size : 2.5rem;
+  font-size : 2rem;
   box-shadow: 1px 1px 0px rgb(156, 111, 26),
                 2px 2px 0px rgb(156, 111, 26),
                 3px 3px 0px rgb(156, 111, 26),
@@ -277,7 +299,7 @@ li{
 
 ._256_{
   background: #ABE545;
-  font-size : 2.5rem;
+  font-size : 2rem;
   box-shadow: 1px 1px 0px rgb(94, 136, 21),
                 2px 2px 0px rgb(94, 136, 21),
                 3px 3px 0px rgb(94, 136, 21),
@@ -288,7 +310,7 @@ li{
 
 ._512_{
   background: rgb(255, 74, 164);
-  font-size : 2.5rem;
+  font-size : 2rem;
   box-shadow: 1px 1px 0px rgb(172, 28, 100),
                 2px 2px 0px rgb(172, 28, 100),
                 3px 3px 0px rgb(172, 28, 100),
@@ -322,6 +344,55 @@ li{
 footer{
   font-size : 0.8rem;
   color : rgba(255, 255, 255, 0.425);
+}
+
+.popup {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.popup .popuptext {
+  font-size: 0.8rem;
+  font-weight : 400;
+  visibility: hidden;
+  width: 300px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: rgb(27, 27, 27);
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 200%;
+  left: 30%;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.fa-info-circle{
+  font-size : 1.5rem;
+  font-weight : 400;
+  position : absolute;
+  top : 3%;
+  right : 3%;
 }
 
 /* mobile view */
@@ -359,5 +430,9 @@ footer{
     margin: 1.2%;
     width: 22%;
   }
+  .popup .popuptext {
+    left : 0%;
+    right: 50%;
+}
 
 }

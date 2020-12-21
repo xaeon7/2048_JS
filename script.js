@@ -1,10 +1,12 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
 const score = document.querySelector("#score");
-const status = document.querySelector("h1");
+const status = document.querySelector(".info");
 const high_score = document.querySelector("#highscore");
 const sfx = document.querySelector("#sfx");
 const container = document.querySelector("#container");
+const popup = document.querySelector("#myPopup");
+
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
@@ -36,6 +38,10 @@ const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
 const gestureZone = document.getElementById('modalContent');
 
 // Functions
+
+const PopUpText = () => {
+  popup.classList.toggle("show");
+}
 const NewValue = () => {
   const value = Math.floor(Math.random() * 8 + 1) === 1? 4 : 2;
   return value;
@@ -72,7 +78,6 @@ const InitBoard = () => {
 }
 
 const UpdateBoard = (board) =>{
-  sfx.pause(); 
   sfx.play();
   score.innerHTML = score_num;
   high_score.innerHTML = HIGHSCORE;
@@ -339,7 +344,7 @@ const Won = () => {
     for(let col=0; col< boardSize; col++){
       if(board[row][col] === 2048){
         status.innerHTML = 'YOU WIN';
-        status.classList.add('win');
+        status.className = 'win';
         return true;
       }
     }
@@ -362,7 +367,7 @@ const NoMoves = () => {
       }
     }
     status.innerHTML = 'GAME OVER';
-    status.classList.add('lost');
+    status.className = 'lost';
     return true;
   } 
   return false;
@@ -380,7 +385,7 @@ const Restart = () => {
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]];
   score_num = 0;
-  status.className = '';
+  status.className = 'info';
   status.innerHTML = '2048';
   InitBoard();
   UpdateBoard(board);

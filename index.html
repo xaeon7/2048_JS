@@ -7,13 +7,20 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="icon"  type="image/png"  src="assets/icon.png"/>
   </head>
   <body>
     <audio id="sfx">
-      <source src="move.wav" type="audio/wav">
+      <source src="assets/move.wav" type="audio/wav">
     </audio>
     <div class="header">
-      <h1>2048</h1>
+      <div class="info popup" onclick="PopUpText()">
+        <i class="fa fa-info-circle"></i>
+        2048
+        <span class="popuptext" id="myPopup">2048 is a single-player sliding block puzzle game designed by Italian web developer Gabriele Cirulli. The objective of the game is to slide numbered tiles on a grid to combine them to create a tile with the number 2048; however, one can continue to play the game after reaching the goal, creating tiles with larger numbers.</span>
+      </div>
+
       <div class="score-sys">
         <div class="score">
           <h2>Score</h2>
