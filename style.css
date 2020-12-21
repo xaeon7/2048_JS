@@ -429,8 +429,8 @@ footer{
     width: 22%;
   }
   .popup .popuptext {
-    left : 0%;
-    right: 50%;
+    top :275%;
+    left : -7.5%;
 }
 
 }
