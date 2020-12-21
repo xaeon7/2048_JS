@@ -14,12 +14,19 @@
     </audio>
     <div class="header">
       <h1>2048</h1>
-      <div class="options">
+      <div class="score-sys">
         <div class="score">
           <h2>Score</h2>
           <h2 id="score">0</h2>
         </div>
+        <div class="score hs">
+          <h2>High Score</h2>
+          <h2 id="highscore">0</h2>
+        </div>
+      </div>
+      <div class="options">
         <button class="restart" onclick="Restart()">Restart</button>
+        <button class="restart undo" onclick="Undo()">Undo</button>
       </div>
     </div>
     <div id="container">

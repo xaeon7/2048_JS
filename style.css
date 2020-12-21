@@ -17,28 +17,39 @@ body{
   user-select: none;
 }
 
-.options{
-  margin : 0 10px;
-  height : 150px;
+.score-sys{
+  margin : 0 20px;
+  height : 130px;
   display : flex;
   align-items : center;
   justify-content : space-between;
   flex-direction : column;
+  transition : ease-out 0.25s;
 }
 
+.options{
+  height : 130px;
+  display : flex;
+  align-items : center;
+  justify-content : space-between;
+  flex-direction : column;
+  transition : ease-out 0.25s;
+}
 
 .header{
-  width : 390px;
   display : flex;
   align-items : center;
   justify-content : space-between;
   flex-wrap : wrap;
   padding : 5px;
+  font-size : 1.5rem;
 }
 
 .score{
-  width : 150px;
-  height : 70px;
+  height : 60px;
+  width: 100%;
+  font-size : 0.9rem;
+  padding : 0 10px;
   background : #49D4FF;
   box-shadow: 1px 1px 0px rgb(43, 131, 158),
                 2px 2px 0px rgb(43, 131, 158),
@@ -54,12 +65,22 @@ body{
   flex-wrap : wrap;
 }
 
+.hs{
+  background : #FE5955;
+  box-shadow: 1px 1px 0px rgb(172, 49, 47),
+                2px 2px 0px rgb(172, 49, 47),
+                3px 3px 0px rgb(172, 49, 47),
+                4px 4px 0px rgb(172, 49, 47),
+                5px 5px 0px rgb(172, 49, 47),
+                6px 6px 0px rgb(172, 49, 47);
+}
+
 .restart{
+  padding : 0 10px;
   font-weight :bold;
-  font-size : 1.5rem;
   color: #e7e7de;
-  height : 70px;
-  width : 150px;
+  height : 60px;
+  width : 100%;
   background : #FF973D;
   box-shadow: 1px 1px 0px rgb(175, 102, 38),
                 2px 2px 0px rgb(175, 102, 38),
@@ -89,12 +110,23 @@ body{
                 6px 6px 0px rgb(11, 119, 38);
 }
 
+.undo{
+  background: rgb(139, 194, 44);
+  box-shadow: 1px 1px 0px rgb(94, 136, 21),
+                2px 2px 0px rgb(94, 136, 21),
+                3px 3px 0px rgb(94, 136, 21),
+                4px 4px 0px rgb(94, 136, 21),
+                5px 5px 0px rgb(94, 136, 21),
+                6px 6px 0px rgb(94, 136, 21);
+}
+
 h1{
   font-size : 3rem;
+  text-align : center;
   background : rgb(236, 23, 105);
   border-radius : 10px;
-  width : 150px;
-  height : 150px;
+  height : 130px;
+  width : 130px;
   display : flex;
   align-items : center;
   justify-content : center;
@@ -104,6 +136,33 @@ h1{
                 4px 4px 0px rgb(153, 18, 70),
                 5px 5px 0px rgb(153, 18, 70),
                 6px 6px 0px rgb(153, 18, 70);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  transition : ease-out 0.25s;
+}
+
+.win{
+  font-size : 3rem;
+  background: rgb(255, 178, 35);
+  box-shadow: 1px 1px 0px rgb(156, 111, 26),
+                2px 2px 0px rgb(156, 111, 26),
+                3px 3px 0px rgb(156, 111, 26),
+                4px 4px 0px rgb(156, 111, 26),
+                5px 5px 0px rgb(156, 111, 26),
+                6px 6px 0px rgb(156, 111, 26);
+  transition : ease-out 0.4s;
+}
+
+.lost{
+  font-size : 2rem;
+  background : rgb(68, 68, 68);
+  box-shadow: 1px 1px 0px rgb(39, 39, 39),
+                2px 2px 0px rgb(39, 39, 39),
+                3px 3px 0px rgb(39, 39, 39),
+                4px 4px 0px rgb(39, 39, 39),
+                5px 5px 0px rgb(39, 39, 39),
+                6px 6px 0px rgb(39, 39, 39);
+  transition : ease-out 0.4s;             
 }
 
 #container{
@@ -267,11 +326,33 @@ footer{
 
 /* mobile view */
 @media screen and (max-width: 400px) {
+  body{
+    width : 100%;
+  }
   .header{
     width : 90%;
+    display : flex;
+    align-items : center;
+    justify-content : space-evenly;
+  }
+  .score-sys{
+    margin : 0 5px;
+    padding : 5px;
+  }
+  .options{
+    height : 65px;
+    width : 95%;
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
+    flex-direction : row;
+  }
+  .restart{
+    margin : 5px 5px;
   }
   #container{
     margin-top: 20px;
+    margin-bottom : 5px;
     width: 92%;
   }
   li{

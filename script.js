@@ -1,14 +1,29 @@
 // Global Variables
 const cards = document.querySelectorAll("li");
 const score = document.querySelector("#score");
+const status = document.querySelector("h1");
+const high_score = document.querySelector("#highscore");
 const sfx = document.querySelector("#sfx");
-const container = document.querySelector("#container")
+const container = document.querySelector("#container");
 let board = [ [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]];
+let prevboard = [ [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]];
 const boardSize = 4;
-score_num = 0;
+let limit_undo = 0;
+let score_num = 0;
+let prevScore = 0;
+
+let HIGHSCORE = localStorage.getItem("highScore");
+  if(HIGHSCORE != null){
+    HIGHSCORE = JSON.parse(HIGHSCORE);
+  } else {
+    HIGHSCORE = 0;
+  }
 
 let pageWidth = window.innerWidth || document.body.clientWidth;
 let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
@@ -60,6 +75,7 @@ const UpdateBoard = (board) =>{
   sfx.pause(); 
   sfx.play();
   score.innerHTML = score_num;
+  high_score.innerHTML = HIGHSCORE;
   for(let _ = 0; _< boardSize ; _++){
     board[_].map((number, index) => {
       Reset(_, index);
@@ -99,6 +115,10 @@ const MergeLeft= (board) => {
       if(board[i][j] === board[i][j+1]){
         board[i][j] *= 2;
         score_num += board[i][j] + (board[i][j] % 9);
+        if(score_num > HIGHSCORE){
+          HIGHSCORE = score_num;
+          localStorage.setItem("highScore", JSON.stringify(HIGHSCORE));
+        }
         board[i][j+1] =0;
       }
     }
@@ -187,6 +207,8 @@ const GetMove = () => {
     switch(HandleGesture(event)) {
       case 'left':
         const temp1 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp1;
+        prevScore = score_num;
         IsOver();
         MergeLeft(board);
         if(UselessMove(temp1, board)){
@@ -198,6 +220,8 @@ const GetMove = () => {
         }
       case 'up':
         const temp2 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp2;
+        prevScore = score_num;
         IsOver();
         MergeUp(board);
         if(UselessMove(temp2, board)){
@@ -209,6 +233,8 @@ const GetMove = () => {
         }
       case 'right':
         const temp3 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp3;
+        prevScore = score_num;
         IsOver();
         MergeRight(board);
         if(UselessMove(temp3, board)){
@@ -220,6 +246,8 @@ const GetMove = () => {
         }
       case 'down':
         const temp4 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp4;
+        prevScore = score_num;
         IsOver();
         MergeDown(board);
         if(UselessMove(temp4, board)){
@@ -239,6 +267,8 @@ const GetMove = () => {
     switch(event.which) {
       case 37:
         const temp1 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp1;
+        prevScore = score_num;
         IsOver();
         MergeLeft(board);
         if(UselessMove(temp1, board)){
@@ -250,6 +280,8 @@ const GetMove = () => {
         }
       case 38:
         const temp2 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp2;
+        prevScore = score_num;
         IsOver();
         MergeUp(board);
         if(UselessMove(temp2, board)){
@@ -261,6 +293,8 @@ const GetMove = () => {
         }
       case 39:
         const temp3 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp3;
+        prevScore = score_num;
         IsOver();
         MergeRight(board);
         if(UselessMove(temp3, board)){
@@ -272,6 +306,8 @@ const GetMove = () => {
         }
       case 40:
         const temp4 = JSON.parse(JSON.stringify(board));
+        prevBoard = temp4;
+        prevScore = score_num;
         IsOver();
         MergeDown(board);
         if(UselessMove(temp4, board)){
@@ -302,7 +338,8 @@ const Won = () => {
   for(let row=0; row< boardSize; row++){
     for(let col=0; col< boardSize; col++){
       if(board[row][col] === 2048){
-        alert('You won!');
+        status.innerHTML = 'YOU WIN';
+        status.classList.add('win');
         return true;
       }
     }
@@ -324,16 +361,17 @@ const NoMoves = () => {
         }
       }
     }
-    alert('You lost!');
+    status.innerHTML = 'GAME OVER';
+    status.classList.add('lost');
     return true;
   } 
   return false;
 }
 
 const IsOver = () =>{
-  UpdateBoard(board);
   Won();
   NoMoves();
+  UpdateBoard(board);
 }
 
 const Restart = () => {
@@ -341,7 +379,16 @@ const Restart = () => {
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]];
+  score_num = 0;
+  status.className = '';
+  status.innerHTML = '2048';
   InitBoard();
+  UpdateBoard(board);
+}
+
+const Undo = () => {
+  score_num = prevScore;
+  board = prevBoard;
   UpdateBoard(board);
 }
 
